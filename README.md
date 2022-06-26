@@ -42,18 +42,29 @@ For loops are responsible for executing the code in a repetitive manner until th
 #### Formatting
 In order to make the final table organized and visually pleasing, the code also contain formatting syntax.
 ```
-Range("A1").Font.Italic = True
-Cells(1, 1).Font.Size = 14
-Range("B4").NumberFormat = "#,##0"
+Worksheets("All Stocks Analysis").Activate
+    Range("A3:C3").Font.FontStyle = "Bold"
+    Range("A3:C3").Borders(xlEdgeBottom).LineStyle = xlContinuous
+    Range("B4:B15").NumberFormat = "#,##0"
+    Range("C4:C15").NumberFormat = "0.0%"
+    Columns("B").AutoFit
 ```
 All formating that is possible in Excel, we can execute in VBA as well. By selecting a cell Cells(1, 1) or a range Range("A3:C3") we define where we want to apply formatting. There are plenty of useful sites online where we can find clear formatting instructions. This link provides some of the formatting options [Formatting](https://www.excelhowto.com/macros/formatting-a-range-of-cells-in-excel-vba/).
 
 **conditional formatting**.
 ```
- If Cells(i, 3) < 0 Then 'set a condition
-    Cells(i, 3).Interior.Color = vbRed 'color cell red.
-End If
+ dataRowStart = 4
+    dataRowEnd = 15
+    For i = dataRowStart To dataRowEnd  
+        If Cells(i, 3) > 0 Then 
+            Cells(i, 3).Interior.Color = vbGreen  
+        Else
+            Cells(i, 3).Interior.Color = vbRed 
+        End If   
+    Next i
 ```
+#### Run Time
+The time taken for execution of **AllStockAnalysis** and **AllStockRefactored** are showen in the below pictures.
 
-
+<img width="207" alt="ALLstocks 2017" src="https://user-images.githubusercontent.com/107584361/175827737-1edaed50-b87a-48b6-bb24-19d65dac947f.png">.    <img width="199" alt="Time 2017" src="https://user-images.githubusercontent.com/107584361/175827781-7cb746d6-8397-4a38-ad5a-de9e8c415041.png">
 
