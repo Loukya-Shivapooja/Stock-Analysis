@@ -13,7 +13,7 @@ This site helps us to understand VBA in detail [excel VBA](https://www.homeandle
 # Results
 An Analysis was performed to find each ticker **Total Daily Volume** and **Returns**. If we sum up all of the daily volume of each ticker we will have a rough idea of how often it gets traded. to find the returns, the stock's price at the end of the year is divided by the price at the beginning of the year, and converted to show percentage growth or loss. This indicates how much return in investment on a given ticker, with positive (green) values indicating increased value and negative (red) indicating losses.
 
-![Stocks_2017]("https://user-images.githubusercontent.com/107584361/175802193-a293cf21-4e57-4e5b-b342-1083bd7f2335.png").
+<img width="251" alt="Stocks 2017" src="https://user-images.githubusercontent.com/107584361/175803375-435ef559-d474-4eab-848e-e5070c53ecc4.png">.  <img width="248" alt="Stocks 2018" src="https://user-images.githubusercontent.com/107584361/175803391-b3b5e1c7-d1c8-4858-a2c5-fe78c80069d8.png">.
 
 The Green Energy stocks for the year 2017 has a high ratio of positive return except for one ticker. Analysis for the year 2018 shows a complete different picture. The majority of the stocks have negative returns. The drop was significant. The DQ stock had almost **200%** yearly return in 2017, but in 2018 the stock dropped and finished the year with **negative 63%**.
 These results indicate a risky investment. The stock trend is not stable and might not be worth investing all the money in DQ stocks.
