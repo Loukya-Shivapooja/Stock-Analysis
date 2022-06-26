@@ -17,25 +17,25 @@ An Analysis was performed to find each ticker **Total Daily Volume** and **Retur
 
 The Green Energy stocks for the year 2017 has a high ratio of positive return except for one ticker. Analysis for the year 2018 shows a complete different picture. The majority of the stocks have negative returns. The drop was significant. The DQ stock had almost **200%** yearly return in 2017, but in 2018 the stock dropped and finished the year with **negative 63%**.
 These results indicate a risky investment. The stock trend is not stable and might not be worth investing all the money in DQ stocks.
-### Creating a Macro
-Both scripts **“AllStockAnalysis”** and **“AllStockAnalysisRefactored”** have the same output. Codes run calculations for the given stocks 
-[stocks Data](VBA Challenge.xlsm) and return data on a new worksheet **All_Stock_Analysis**. The idea of presenting two codes with the same output is to highlight the **importance of refactoring**.
+### Understanding the Code
+two Macros **“AllStockAnalysis”** and **“AllStockAnalysisRefactored”** have the same output. Codes has performed calculations for the given stocks  and returned data on a new worksheet **All_Stock_Analysis**. The AllStockAnalysis uses nested loop where as AllStockAnalysisRefactored used indexing. The two codes are performed to understand the **importance of refactoring**.
+### Refactored Code 
 #### Ticker (column A):
 Array `Dim tickers(12) As String` holds 12 tickers. Variable `tickerIndex` access array indexes and returning values in the table.
 #### Total Daily Volume (colum B):
-To calculate The Total Volume for a particular ticker : `tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 9).Value` To make this code work we need to create an array `Dim tickerVolumes(12) As Long` that holds 12 elements, and use our new variable `tickerIndex` to access ticker index in order to store the right value for the right ticker. Before and after the ticker changes the equation sums up total daily volume.
+To calculate The Total Volume for one particular ticker : `tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 8).Value` To make this code work we need to create an array `Dim tickerVolumes(12) As Long` that holds 12 elements, and use our new variable `tickerIndex` to access ticker index in order to store the right value for the right ticker. Before and after the ticker changes the equation sums up total daily volume.
 #### Yearly Return (colum C):
 The following code calculates Yearly Return
 ```
-If Cells(i - 1, 2).Value <> tickers(tickerIndex) And Cells(i, 2).Value = tickers(tickerIndex) Then
-    tickerStartingPrices(tickerIndex) = Cells(i, 7).Value`
+If Cells(i - 1, 1).Value <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
+    tickerStartingPrices(tickerIndex) = Cells(i, 6).Value
     End If
     
-If Cells(i + 1, 2).Value <> tickers(tickerIndex) And Cells(i, 2).Value = tickers(tickerIndex) Then
-    tickerEndingPrices(tickerIndex) = Cells(i, 7).Value 
+If Cells(i + 1, 1).Value <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
+    tickerEndingPrices(tickerIndex) = Cells(i, 6).Value 
     End If
 ```
-To make this code work we need to use conditionals or `if statements`. The variable `tickerIndex` helps us find the starting and ending point of an old/new ticker in the dataset. Arrays `Dim tickerStartingPrices(12) As Single` and `Dim tickerEndingPrices(12) As Single` store captured values. 
+By using `if then statements` and applying conditions the variable `tickerIndex` helps us find the starting and ending point of an old/new ticker in the data. Arrays `Dim tickerStartingPrices(12) As Single` and `Dim tickerEndingPrices(12) As Single` store captured values. 
 
 #### For loops
 For loops are responsible for executing the code in a repetitive manner until the condition is met. Incrementing a variable by 1 `tickerIndex = tickerIndex + 1` is responsible to move to the next ticker. By initializing arrays `tickerVolumes(tickerIndex) = 0` we reset the total volume to zero, before entering the loop again.
