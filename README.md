@@ -11,14 +11,14 @@ However, we will be using an extension to excel built to automate tasks.
 we can learn more about VBA from the begineers website. 
 This site helps us to understand VBA in detail [excel VBA](https://www.homeandlearn.org/index.html).
 # Results
-An Analysis was performed to find each ticker **Total Daily Volume** and **Returns**. If we sum up all of the daily volume of each ticker we will have a rough idea of how often it gets traded. to find the returns, the stock's price at the end of the year is divided by the price at the beginning of the year, and converted to show percentage growth or loss. This indicates how much return in investment on a given ticker, with positive (green) values indicating increased value and negative (red) indicating losses.
+An Analysis was performed to find each ticker **Total Daily Volume** and **Returns**. If we sum up all of the daily volume of each ticker we will have a rough idea of how often it gets traded. To find the returns, the stock's price at the end of the year is divided by the price at the beginning of the year, and converted to show percentage growth or loss. This indicates how much return in investment on a given ticker, with positive (green) values indicating increased value and negative (red) indicating losses.
 
 <img width="252" alt="stocks 2017" src="https://user-images.githubusercontent.com/107584361/175803515-74e10648-c600-4e16-b6ae-749edbeca77d.png">.  <img width="248" alt="Stocks 2018" src="https://user-images.githubusercontent.com/107584361/175803391-b3b5e1c7-d1c8-4858-a2c5-fe78c80069d8.png">.
 
 The Green Energy stocks for the year 2017 has a high ratio of positive return except for one ticker. Analysis for the year 2018 shows a complete different picture. The majority of the stocks have negative returns. The drop was significant. The DQ stock had almost **200%** yearly return in 2017, but in 2018 the stock dropped and finished the year with **negative 63%**.
 These results indicate a risky investment. The stock trend is not stable and might not be worth investing all the money in DQ stocks.
-### Understanding the Code
-two Macros **“AllStockAnalysis”** and **“AllStockAnalysisRefactored”** have the same output. Codes has performed calculations for the given stocks  and returned data on a new worksheet **All_Stock_Analysis**. The AllStockAnalysis uses nested loop where as AllStockAnalysisRefactored used indexing. The two codes are performed to understand the **importance of refactoring**.
+### Code Comparision
+Two Macros **“AllStockAnalysis”** and **“AllStockAnalysisRefactored”** have the same output. Codes has performed calculations for the given stocks and returned data on a new worksheet **All Stock Analysis**. The AllStockAnalysis uses nested loop where as AllStockAnalysisRefactored uses indexing. The two codes are performed to understand the **importance of refactoring**.
 ### Refactored Code 
 #### Ticker (column A):
 Array `Dim tickers(12) As String` holds 12 tickers. Variable `tickerIndex` access array indexes and returning values in the table.
@@ -64,7 +64,26 @@ All formating that is possible in Excel, we can execute in VBA as well. By selec
     Next i
 ```
 #### Run Time
-The time taken for execution of **AllStockAnalysis** and **AllStockRefactored** are showen in the below pictures.
+The time taken for execution of **AllStockAnalysis** and **AllStockAnalysisRefactored** are showen in the below pictures.
 
 <img width="207" alt="ALLstocks 2017" src="https://user-images.githubusercontent.com/107584361/175827737-1edaed50-b87a-48b6-bb24-19d65dac947f.png">.    <img width="199" alt="Time 2017" src="https://user-images.githubusercontent.com/107584361/175827781-7cb746d6-8397-4a38-ad5a-de9e8c415041.png">
 
+**AllStockAnalysis** ran for `0.88 sec` whereas **AllStockAnalysisRefactored** ran for `0.17 sec`. The **AllStocksAnalysisRefactored** has ran 5 times faster than **AllstockAnalysis**.
+# Summary
+Refactoring is a key part of the coding process. When refactoring code, we aren’t adding new functionality; we just want to make the code more efficient—by taking fewer steps, using less memory, or improving the logic of the code to make it easier for future users to read. Refactoring is common on the job because first attempts at code won’t always be the best way to accomplish a task. 
+The goal with refactoring is typically to improve readability, reduce complexity (and thus increase speed), and streamline the code, making it easier to maintain or extend.
+### Advantages and Disadvantages of refactoring Code
+Every process has its own advantages and disadvantages 
+#### Advantages
+The advantages of refactoring code are to improve code:
+
+1. **Efficiency** - code is taking fewer steps, therefore taking up less computer memory and taking-up less time to execute the code,
+2. **Readability** - code is easier to understand.
+3. **Functionality** - fixing any bugs that might have been overlooked in the original code.
+#### Disadvantages
+The disadvantages of refactoring code can be:
+
+1. **Frustrating and time-consuming** - we might not be aware of the purpose of the code and its functionality. Especially when the code is not well commented and we could spend a lot of time figuring out what specific lines or blocks of code are supposed to do. That's why the good documentation and commenting the code is very important.
+2. **Less efficient** - by refactoring the code, we could end up with a less efficient script.
+### Pros and Cons of refactoring the original VBA Script
+The Orginal Code was a simple and easy, step by step process of nested looping, an iterative process within which multiple additional iterative processes are contained. In the refactored code, code stays in same loop gathers all data and stored in an array. Both has its own pros and. cons, by refactoring the code has run more faster i.e., 5 times faster making more efficient and faster, less time taking. 
