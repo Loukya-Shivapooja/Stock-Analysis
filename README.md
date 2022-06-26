@@ -18,4 +18,42 @@ An Analysis was performed to find each ticker **Total Daily Volume** and **Retur
 The Green Energy stocks for the year 2017 has a high ratio of positive return except for one ticker. Analysis for the year 2018 shows a complete different picture. The majority of the stocks have negative returns. The drop was significant. The DQ stock had almost **200%** yearly return in 2017, but in 2018 the stock dropped and finished the year with **negative 63%**.
 These results indicate a risky investment. The stock trend is not stable and might not be worth investing all the money in DQ stocks.
 ### Creating a Macro
-Both scripts **“AllStockAnalysis”** and **“AllStockAnalysisRefactored”** have the same output. Codes run calculations for the given stocks and return data on a new worksheet **All_Stock_Analysis**. The idea of presenting two codes with the same output is to highlight the **importance of refactoring**.
+Both scripts **“AllStockAnalysis”** and **“AllStockAnalysisRefactored”** have the same output. Codes run calculations for the given stocks 
+[stocks Data](VBA Challenge.xlsm) and return data on a new worksheet **All_Stock_Analysis**. The idea of presenting two codes with the same output is to highlight the **importance of refactoring**.
+#### Ticker (column A):
+Array `Dim tickers(12) As String` holds 12 tickers. Variable `tickerIndex` access array indexes and returning values in the table.
+#### Total Daily Volume (colum B):
+To calculate The Total Volume for a particular ticker : `tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 9).Value` To make this code work we need to create an array `Dim tickerVolumes(12) As Long` that holds 12 elements, and use our new variable `tickerIndex` to access ticker index in order to store the right value for the right ticker. Before and after the ticker changes the equation sums up total daily volume.
+#### Yearly Return (colum C):
+The following code calculates Yearly Return
+```
+If Cells(i - 1, 2).Value <> tickers(tickerIndex) And Cells(i, 2).Value = tickers(tickerIndex) Then
+    tickerStartingPrices(tickerIndex) = Cells(i, 7).Value`
+    End If
+    
+If Cells(i + 1, 2).Value <> tickers(tickerIndex) And Cells(i, 2).Value = tickers(tickerIndex) Then
+    tickerEndingPrices(tickerIndex) = Cells(i, 7).Value 
+    End If
+```
+To make this code work we need to use conditionals or `if statements`. The variable `tickerIndex` helps us find the starting and ending point of an old/new ticker in the dataset. Arrays `Dim tickerStartingPrices(12) As Single` and `Dim tickerEndingPrices(12) As Single` store captured values. 
+
+#### For loops
+For loops are responsible for executing the code in a repetitive manner until the condition is met. Incrementing a variable by 1 `tickerIndex = tickerIndex + 1` is responsible to move to the next ticker. By initializing arrays `tickerVolumes(tickerIndex) = 0` we reset the total volume to zero, before entering the loop again.
+#### Formatting
+In order to make the final table organized and visually pleasing, the code also contain formatting syntax.
+```
+Range("A1").Font.Italic = True
+Cells(1, 1).Font.Size = 14
+Range("B4").NumberFormat = "#,##0"
+```
+All formating that is possible in Excel, we can execute in VBA as well. By selecting a cell Cells(1, 1) or a range Range("A3:C3") we define where we want to apply formatting. There are plenty of useful sites online where we can find clear formatting instructions. This link provides some of the formatting options [Formatting](https://www.excelhowto.com/macros/formatting-a-range-of-cells-in-excel-vba/).
+
+**conditional formatting**.
+```
+ If Cells(i, 3) < 0 Then 'set a condition
+    Cells(i, 3).Interior.Color = vbRed 'color cell red.
+End If
+```
+
+
+
